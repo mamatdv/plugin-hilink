@@ -629,7 +629,7 @@ class hilink extends eqLogic {
         		$hlCmd->setEqLogic_id($this->getId());
         		$hlCmd->setEqType('hilink');
         		$hlCmd->setIsHistorized(0);
-				$hlCmd->setIsVisible(1);
+			$hlCmd->setIsVisible(1);
         		$hlCmd->setName(__('Message', __FILE__));
         		$hlCmd->setLogicalId('sms');
       	  	}
@@ -644,7 +644,7 @@ class hilink extends eqLogic {
         		$hlCmd->setEqLogic_id($this->getId());
         		$hlCmd->setEqType('hilink');
         		$hlCmd->setIsHistorized(0);
-				$hlCmd->setIsVisible(1);
+			$hlCmd->setIsVisible(1);
        		 	$hlCmd->setName(__('Envoyer', __FILE__));
         		$hlCmd->setLogicalId('send');
       	  	}
