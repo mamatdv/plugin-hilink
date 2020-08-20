@@ -35,30 +35,16 @@ class hilink extends eqLogic {
 		$login = trim(config::byKey('huawei_login','hilink'));
 		$password = trim(config::byKey('huawei_password','hilink'));
 		
-		//log::add('hilink', 'debug', 'Modem : ' . $adress . "; Login : " . $login . "; Mot de passe : " . $password);
+		log::add('hilink', 'debug', 'Modem : ' . $adress . "; Login : " . $login . "; Mot de passe : " . $password);
 		
 		if ($adress != '' && $login != '' && $password != '')
 		{
-			//The router class is the main entry point for interaction.
-			/*$router = new HSPDev\HuaweiApi\Router;
-			$router->setAddress($adress);
-			$result = $router->getStatus();
-			
-			if($result->ConnectionStatus != "")
-			{
-				$return['launchable'] = 'ok';
-			}
-			else
-			{
-				$return['launchable'] = 'nok';
-				//$return['launchable_message'] = __('L\'adresse du modem est incorrect.', __FILE__);
-			}*/
 			$return['launchable'] = 'ok';
 		}
 		else
 		{
 			$return['launchable'] = 'nok';
-			//$return['launchable_message'] = __('Adresse ou login ou mot de passe vide.', __FILE__);
+			$return['launchable_message'] = __('Adresse ou login ou mot de passe vide.', __FILE__);
 		}
 					
 		$cron = cron::byClassAndFunction('hilink', 'refresh_message');
@@ -69,13 +55,6 @@ class hilink extends eqLogic {
 		
 		return $return;
 		
-		/*		
-		$cron = cron::byClassAndFunction('hilink', 'RefreshInformation');
-		if(is_object($cron) && $cron->running())
-			$return['state'] = 'ok';
-		else 
-			$return['state'] = 'nok';
-		return $return;*/
 		
 	}
 	
@@ -116,8 +95,6 @@ class hilink extends eqLogic {
 			$cron->stop();
 			$cron->remove();
 		}
-		/*$cache = cache::byKey('Freebox_OS::SessionToken');
-		$cache->remove();*/
 	}
 	
 	public static function dependancy_info() {
@@ -147,29 +124,6 @@ class hilink extends eqLogic {
   	
 	public static function configuration() 
 	{
-		/*if (config::byKey('pin', 'gammu') == '' || config::byKey('nodeGateway', 'gammu') == '') {
-	    log::add('gammu', 'error', 'Configuration plugin non remplie, impossible de configurer gammu');
-	    die();
-	} else {
-	log::add('gammu', 'debug', 'Configuration gammu');
-	}
-    $install_path = dirname(__FILE__) . '/../../resources';
-    $url = network::getNetworkAccess('internal') . '/plugins/gammu/core/api/jeeGammu.php?apikey=' . jeedom::getApiKey('gammu');
-
-    $usbGateway = jeedom::getUsbMapping(config::byKey('nodeGateway', 'gammu'));
-    $cmd = 'sudo /bin/bash ' . $install_path . '/install.sh ' . $install_path . ' ' . $usbGateway . ' ' . config::byKey('pin', 'gammu') . ' ' . $url;
-    exec($cmd);
-    log::add('gammu', 'debug', $cmd);
-
-    $i = 1;
-    foreach (eqLogic::byType('gammu', true) as $gammu) {
-      $line = 'number' . $i . ' = ' . $gammu->getConfiguration('phone');
-      $cmd = 'echo "' . $line . '" | sudo tee --append /etc/gammu-smsdrc';
-      exec($cmd);
-      $i++;
-    }
-
-    exec('sudo service gammu-smsd restart');*/
 		self::deamon_start();
   	}
   
@@ -196,14 +150,6 @@ class hilink extends eqLogic {
 		{	
 			$passage++;
 			hilink::check_message($router);
-			
-			/*$elogic = self::byLogicalId('modem', 'hilink');
-			if (is_object($elogic)) {
-				log::add('hilink', 'debug', 'coucou');
-				foreach($elogic->getCmd('info') as $Commande){
-					$Commande->execute();
-				}
-			}*/
 			
 			if ($nbpause == $passage)
 			{
