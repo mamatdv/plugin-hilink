@@ -6,6 +6,6 @@
 	"require" : "2.4",
 	"category" : "communication",
 	"hasOwnDeamon" : true,
-    "hasDependency" : false,
+    "hasDependency" : true,
 	"hasInteract" : true
 }
