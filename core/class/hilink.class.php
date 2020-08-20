@@ -119,7 +119,7 @@ class hilink extends eqLogic {
 		/*$cache = cache::byKey('Freebox_OS::SessionToken');
 		$cache->remove();*/
 	}
-		
+	
 	public static function dependancy_info() {
 		$return = array();
 		$return['log'] = 'Hilink_update';
@@ -137,19 +137,15 @@ class hilink extends eqLogic {
 	}
 
 	public static function dependancy_install() {
+		$dep_info = self::dependancy_info();
 		if (file_exists('/tmp/dependancy_Hilink_in_progress')) {
 			return;
 		}
 		log::remove('Hilink_update');
 		return array('script' => dirname(__FILE__) . '/../../resources/install.sh ', 'log' => log::getPathToLog('Hilink_update'));
-		/*
-		$cmd = system::getCmdSudo() . ' /bin/bash ' . dirname(__FILE__) . '/../../ressources/install.sh';
-		$cmd .= ' >> ' . log::getPathToLog('Hilink_update') . ' 2>&1 &';
-		echo ($cmd);
-		exec($cmd);*/
 	}
-
-  	public static function configuration() 
+  	
+	public static function configuration() 
 	{
 		/*if (config::byKey('pin', 'gammu') == '' || config::byKey('nodeGateway', 'gammu') == '') {
 	    log::add('gammu', 'error', 'Configuration plugin non remplie, impossible de configurer gammu');
