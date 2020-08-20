@@ -359,7 +359,7 @@ class hilink extends eqLogic {
 		return $EqLogic;
 	}
 	
-	public static function AddCommande($eqLogic, $_libelle, $_logicalId, $_order = '', $_type="info", $_subType='binary', $_visible = true, $Template='', $unite='', $_min = '', $_max = '') 
+	public static function AddCommande($eqLogic, $_libelle, $_logicalId, $_order = '', $_type="info", $_subType='binary', $_visible = 1, $Template='', $unite='', $_min = '', $_max = '') 
 	{
 		$Commande = $eqLogic->getCmd(null,$_logicalId);
 		if (!is_object($Commande))
