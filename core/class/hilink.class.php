@@ -359,7 +359,7 @@ class hilink extends eqLogic {
 		return $EqLogic;
 	}
 	
-	public static function AddCommande($eqLogic, $_libelle, $_logicalId, $_order = '', $_type="info", $_subType='binary', $_visible = '1', $Template='', $unite='', $_min = '', $_max = '') 
+	public static function AddCommande($eqLogic, $_libelle, $_logicalId, $_order = '', $_type="info", $_subType='binary', $_visible = true, $Template='', $unite='', $_min = '', $_max = '') 
 	{
 		$Commande = $eqLogic->getCmd(null,$_logicalId);
 		if (!is_object($Commande))
@@ -406,12 +406,12 @@ class hilink extends eqLogic {
 		self::AddCommande($modem, 'Conso actuelle mensuelle', 'currentmonth', 4, "info", 'numeric');
 		self::AddCommande($modem, 'Conso par jour', 'percentbyday', 5, "info", 'numeric', true, '', '%');
 		
-		self::AddCommande($modem, 'Conso max mensuelle', 'datalimit', '', "info", 'string', false, 'line');
-		self::AddCommande($modem, 'Conso mensuelle down', 'currentmonthdownload', '', "info", 'numeric', false, 'line');
-		self::AddCommande($modem, 'Conso mensuelle up', 'currentmonthupload', '', "info", 'numeric', false, 'line');
+		self::AddCommande($modem, 'Conso max mensuelle', 'datalimit', '', "info", 'string', 0, 'line');
+		self::AddCommande($modem, 'Conso mensuelle down', 'currentmonthdownload', '', "info", 'numeric', 0, 'line');
+		self::AddCommande($modem, 'Conso mensuelle up', 'currentmonthupload', '', "info", 'numeric', 0, 'line');
 		
-		self::AddCommande($modem, 'Redémarrer', 'reboot', '', "action", 'other', false);
-		self::AddCommande($modem, 'Eteindre', 'shutdown', '', "action", 'other', false);
+		self::AddCommande($modem, 'Redémarrer', 'reboot', '', "action", 'other', 0);
+		self::AddCommande($modem, 'Eteindre', 'shutdown', '', "action", 'other', 0);
 	}
     
 	public static function GetUnit($_limit)
